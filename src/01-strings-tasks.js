@@ -95,8 +95,8 @@ function getFirstChar(value) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
 }
 
 /**
@@ -223,8 +223,20 @@ function getRectangleString(/* width, height */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const arr = str.split('');
+  const forMap = function (n) {
+    if (n.toLowerCase().charCodeAt(0) >= 97 && n.toLowerCase().charCodeAt(0) <= 109) {
+      return n.charCodeAt(0) + 13;
+    }
+    if (n.toLowerCase().charCodeAt(0) >= 110 && n.toLowerCase().charCodeAt(0) <= 122) {
+      return n.charCodeAt(0) - 13;
+    }
+    return n.charCodeAt(0);
+  };
+  const letters = arr.map(forMap);
+  const reducer = (accumulator, currentValue) => accumulator + String.fromCharCode(currentValue);
+  return letters.reduce(reducer, '');
 }
 
 /**
