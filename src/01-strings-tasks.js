@@ -281,8 +281,22 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const converter = {
+    '♣': 0,
+    '♦': 13,
+    '♥': 26,
+    '♠': 39,
+  };
+  const x = value.slice(0, -1);
+  const cardSuit = value.charAt(value.length - 1);
+  switch (x) {
+    case 'A': return converter[cardSuit];
+    case 'J': return converter[cardSuit] + 10;
+    case 'Q': return converter[cardSuit] + 11;
+    case 'K': return converter[cardSuit] + 12;
+    default: return converter[cardSuit] + parseInt(x, 10) - 1;
+  }
 }
 
 
