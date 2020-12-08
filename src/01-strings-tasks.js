@@ -225,7 +225,7 @@ function getRectangleString(/* width, height */) {
  */
 function encodeToRot13(str) {
   const arr = str.split('');
-  const forMap = function (n) {
+  const forMap = function fun(n) {
     if (n.toLowerCase().charCodeAt(0) >= 97 && n.toLowerCase().charCodeAt(0) <= 109) {
       return n.charCodeAt(0) + 13;
     }
